@@ -1,8 +1,10 @@
+const process = require("process");
+
 module.exports = {
   "development": {
     "username": "root",
     "password": "",
-    "database": "pcgamer_db",
+    "database": process.env.DATABASE,
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
