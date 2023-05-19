@@ -4,7 +4,7 @@ const { getProducts, getProductById } = require("../controllers/product.controll
 const verifyToken = require("../middlewares/jwt.middleware");
 
 router
-    .get("/", verifyToken, getProducts)
+    .get("/", getProducts)
     .get("/:id", getProductById)
 
 

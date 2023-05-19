@@ -5,7 +5,7 @@ const getProducts = async () => {
     const products = await Product.findAll({
       include: [
         { association: "images" },
-        { association: "subcategory", include: [{ association: "category" }] },
+        { association: "product_category"},
       ],
     });
 

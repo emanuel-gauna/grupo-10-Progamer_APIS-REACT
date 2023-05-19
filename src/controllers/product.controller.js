@@ -4,24 +4,28 @@ module.exports = {
   getProducts: async (req, res) => {
     try {
       const products = await getProducts();
+      
       const productsResponse = products.map(
-        ({ id, name, description, images, subcategory }) => {
+        ({ id, name, description, images, product_category }) => {
+          //obtengo solo el nombre de las img
+          const imagesName = images.map(image => image.name)
+          //mando los datos
           return {
             id, 
             name,
             description,
-            images,
-            subcategory, 
+            images: imagesName,
+            category: product_category.name,
             detail: `/api/products/${id}`
           };
         }
       );
-
+      
       const getProductCountByCategory = (products) => {
         const categoryCount = {};
 
         for (const product of products) {
-          const categoryName = product.subcategory.category.name;
+          const categoryName = product.product_category.name;
 
           if(categoryCount.hasOwnProperty(categoryName)){
             categoryCount[categoryName]++;
@@ -40,7 +44,9 @@ module.exports = {
       }
 
       return res.status(200).json(RESPONSE);
-    } catch (error) {}
+    } catch (error) {
+      res.satus(500).json({Error:error});
+    }
   },
   getProductById: async (req, res) => {
     const PRODUCT_ID = req.params.id;
