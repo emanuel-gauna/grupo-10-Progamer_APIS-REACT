@@ -9,6 +9,15 @@ const {
 } = require("../services/user.service");
 const bcrypt = require("bcrypt");
 
+/*     ● api/users/
+○ Deberá devolver un objeto literal con la siguiente estructura:
+■ count → cantidad total de usuarios en la base.
+■ users → array con la colección de usuarios, cada uno con:
+● id
+● name
+● email
+● detail → URL para obtener el detalle.
+ */
 module.exports = {
   getUsers: async (req, res) => {
     try {
@@ -35,7 +44,7 @@ module.exports = {
   getUserById: async (req, res) => {
     try {
       const USER_ID = req.params.id;
-      const { id, name, last_name, email, phone, avatar } = await getUserById(
+      const { id, name, last_name, email, phone, avatar, address, city ,postalCode, tel, } = await getUserById(
         USER_ID
       );
 
@@ -45,7 +54,12 @@ module.exports = {
         last_name,
         email,
         phone,
-        avatar,
+        avatar: `/api/users/${id}/${avatar}`,
+        address,
+        city,
+        postalCode,
+        tel,
+
       };
 
       return res.status(200).json(USER_DATA_RESPONSE);

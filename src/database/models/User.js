@@ -11,6 +11,7 @@ module.exports = (sequelize, dataTypes) => {
     city: "" ,
     postalCode:"",
     tel:"" */
+
     let alias = 'User';
     let cols = {
         id: {

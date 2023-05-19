@@ -8,12 +8,14 @@ const {
   updateUser,
   login,
 } = require("../controllers/user.controller");
+
+
 const { userRegisterValidationRules } = require("../validations/registerUser.validator");
 const validate = require("../validations/index.validator");
 const userLoginValidationRules = require("../validations/loginUser.validator");
 
 router
-  .get("/", getUsers)
+  .get("/", getUsers)// localhost://3005/api/users
   .get("/:id", getUserById)
   .post("/login", userLoginValidationRules(), validate, login)
   .post("/register", userRegisterValidationRules(), validate, createUser)
