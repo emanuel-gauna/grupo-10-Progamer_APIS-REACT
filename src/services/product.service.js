@@ -5,7 +5,7 @@ const getProducts = async () => {
     const products = await Product.findAll({
       include: [
         { association: "images" },
-        { association: "subcategory", include: [{ association: "category" }] },
+        { association: "product_category"},
       ],
     });
 
@@ -20,8 +20,22 @@ const getProductById = async (productId) => {
   try {
     const product = await Product.findByPk(productId, {
       include: [
+        { association: "product_category" },
+      ],
+    });
+
+    return product
+  } catch (error) {
+    console.error("Error while fetching product: ", error);
+    throw new Error("Error while fetching product");
+  }
+};
+
+const getProductByIdWithImages = async (productId) => {
+  try {
+    const product = await Product.findByPk(productId, {
+      include: [
         { association: "images" },
-        { association: "subcategory", include: [{ association: "category" }] },
       ],
     });
 
@@ -34,5 +48,6 @@ const getProductById = async (productId) => {
 
 module.exports = {
     getProducts,
-    getProductById
+    getProductById,
+    getProductByIdWithImages
 }
