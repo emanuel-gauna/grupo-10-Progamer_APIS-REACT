@@ -1,4 +1,4 @@
-const { getProducts, getProductById } = require("../services/product.service");
+const { getProducts, getProductById, getProductByIdWithImages } = require("../services/product.service");
 
 module.exports = {
   getProducts: async (req, res) => {
@@ -51,10 +51,20 @@ module.exports = {
   getProductById: async (req, res) => {
     const PRODUCT_ID = req.params.id;
     const product = await getProductById(PRODUCT_ID);
-
-    return res.status(200).json(product);
+    const RESPONSE = {
+      product,
+      images_Url:`/api/products/${PRODUCT_ID}/images`
+    }
+    return res.status(200).json(RESPONSE);
   },
-  createProduct: async (req, res) => {},
-  updateProduct: async (req, res) => {},
-  deleteProduct: async (req, res) => {},
+  getProductByIdImages: async (req, res) => {
+    try {
+      const PRODUCT_ID = req.params.id;
+      const product = await getProductByIdWithImages(PRODUCT_ID);
+      
+      return res.status(200).json(product.images)
+    } catch (error) {
+      res.satus(500).json({Error:error});
+    }
+  },
 };
