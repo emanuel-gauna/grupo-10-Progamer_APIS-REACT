@@ -3,7 +3,7 @@ const process = require("process");
 module.exports = {
   "development": {
     "username": "root",
-    "password": "311091",
+    "password": "",
     "database": process.env.DATABASE,
     "host": "127.0.0.1",
     "dialect": "mysql"
