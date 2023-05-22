@@ -1,8 +1,9 @@
 const { User } = require("../database/models");
 
+//sevicios pasa informacion de  la base de datos al controlador//
 const getUsers = async () => {
   try {
-    return await User.findAll();
+    return await User.findAll();//todos los usuarios
   } catch (error) {
     console.error("Error while fetching users:", error);
     throw new Error("Error fetching users");
@@ -11,16 +12,16 @@ const getUsers = async () => {
 
 const getUserById = async (id) => {
   try {
-    return await User.findByPk(id);
+    return await User.findByPk(id);//usuario por id
   } catch (error) {
     console.error("Error while fetching user:", error);
     throw new Error("Error fetching user");
   }
 };
 
-const getUserByEmail = async (email) => {
+const getUserByEmail = async (email) => {// usuario por email
   try {
-    return await User.findOne({
+    return await User.findOne({//busaca un usuario por su email
       where: {
         email,
       },
@@ -31,7 +32,7 @@ const getUserByEmail = async (email) => {
   }
 };
 
-const insertUser = async (userData) => {
+const insertUser = async (userData) => {//agrega un usuario // create
   try {
     return await User.create(userData);
   } catch (error) {

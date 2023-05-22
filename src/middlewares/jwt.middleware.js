@@ -1,6 +1,6 @@
-const jwt = require("jsonwebtoken");
-const process = require("process");
-const secret = process.env.JWT_SECRET;
+const jwt = require("jsonwebtoken");//importamos la libreria 
+const process = require("process");//
+const secret = process.env.JWT_SECRET;//palabra secreta del .env
 
 const verifyToken = (req, res, next) => {
   const token = req.headers.authorization.split(" ")[1];

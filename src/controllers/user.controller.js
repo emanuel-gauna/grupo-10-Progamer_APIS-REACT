@@ -1,4 +1,5 @@
 const { generateToken } = require("../helpers/jwt.helper");
+
 const {
   getUsers,
   getUserById,
@@ -44,14 +45,14 @@ module.exports = {
   getUserById: async (req, res) => {
     try {
       const USER_ID = req.params.id;
-      const { id, name, last_name, email, phone, avatar, address, city ,postalCode, tel, } = await getUserById(
+      const { id, name, lastname, email, phone, avatar, address, city ,postalCode, tel, } = await getUserById(
         USER_ID
       );
 
       const USER_DATA_RESPONSE = {
         id,
         name,
-        last_name,
+        lastname,
         email,
         phone,
         avatar: `/api/users/${id}/${avatar}`,
@@ -59,37 +60,46 @@ module.exports = {
         city,
         postalCode,
         tel,
-
       };
-
       return res.status(200).json(USER_DATA_RESPONSE);
     } catch (error) {
-      return res.status(500).json({ Error: error });
+      return res.status(500).json({ Error: "No existe este usuario" });
     }
   },
   createUser: async (req, res) => {
     try {
       const result = await insertUser({ 
         ...req.body,
-        pass: bcrypt.hashSync(req.body.pass, 10)
+        pass: bcrypt.hashSync(req.body.pass, 10)//encriptar la contraseña
        });
-
+  /* pasar en el postman metodo "post" la url http://localhost://3005/api/users/register      
+  selccionar body - raw -  - JSON y crear el objecto similar a este
+  {
+    "name":"ema",
+    "lastname": "gauna",
+    "email": "prueba1@mail.com",
+    "pass": "123456",
+    "pass2": "123456",
+    "user_category": "0",
+    "avatar": "default-image.png"
+} */
       if (result) {
-        const SUCCESS_RESPONSE = "User created successfully";
+        const SUCCESS_RESPONSE = "User created successfully";//respuesta satisfactoria
         return res.status(201).json({ msg: SUCCESS_RESPONSE });
       } else {
-        const ERROR_RESPONSE = "Somethings wrong";
+        const ERROR_RESPONSE = "Somethings wrong";//respuesta de errores
         return res.status(400).json({ msg: ERROR_RESPONSE });
       }
     } catch (error) {
-      return res.status(500).json({ Error: error });
+      return res.status(500).json({ Error: error });//errores del servidor
     }
   },
-  login: async (req, res) => {
+  login: async (req, res) => {//login de usuario cn token "jsonWebToken"
     try {
-      const { email } = req.body;
-      const user = await getUserByEmail(email);
-      const token = generateToken(user);
+      const { email } = req.body; // buscamos un email registrado
+      const user = await getUserByEmail(email);//traemos el metodo de servicio q trae los email
+
+      const token = generateToken(user);//metodo que trae el token q vamos a generar de (jwt.io)Jsonwebtoken para Node.js
 
       return res.status(200).json({token})
     } catch (error) {

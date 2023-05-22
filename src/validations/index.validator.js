@@ -15,12 +15,12 @@ const { validationResult } = require("express-validator");
  * @returns La función `validar` se devuelve como una exportación de módulo.
  */
 
-const validate = (req, res, next) => {
-  const errors = validationResult(req);
+const validate = (req, res, next) => {//middelware q ejecuta pedido respuesta y siguiente
+  const errors = validationResult(req);//si no hay errores segui 
   if (errors.isEmpty()) {
     return next();
   }
-  const extractedErrors = errors.mapped();
+  const extractedErrors = errors.mapped();//sino enevia los errores de validator result
 
   return res.status(422).json({
     errors: extractedErrors,

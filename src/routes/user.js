@@ -9,16 +9,20 @@ const {
   login,
 } = require("../controllers/user.controller");
 
+const { userRegisterValidationRules } = require("../validations/registerUser.validator");//funcion de validaciones
 
-const { userRegisterValidationRules } = require("../validations/registerUser.validator");
-const validate = require("../validations/index.validator");
-const userLoginValidationRules = require("../validations/loginUser.validator");
+const  userLoginValidationRules  = require("../validations/loginUser.validator");
+
+const verifyToken = require("../middlewares/jwt.middleware");
+
+const validate = require("../validations/index.validator");//middleware que ejecuta los errores validationResult o continua si esta todo bien
+
 
 router
   .get("/", getUsers)// localhost://3005/api/users
-  .get("/:id", getUserById)
+  .get("/:id", getUserById)//localhost://3005/api/users/1
+  .post("/register", userRegisterValidationRules(), validate, createUser)//http://localhost://3005/api/users/register
   .post("/login", userLoginValidationRules(), validate, login)
-  .post("/register", userRegisterValidationRules(), validate, createUser)
   .put("/:id", updateUser)
   .delete("/:id", deleteUser);
 

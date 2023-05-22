@@ -3,7 +3,6 @@ const process = require("process");
 const secret = process.env.JWT_SECRET;
 
 const generateToken = (user) => {
-
   try {
     const USER_DATA = {
         id: user.id,
@@ -15,7 +14,7 @@ const generateToken = (user) => {
         exp: Date.now() + 60 * 10000,
     }
 
-    const token = jwt.sign({user}, secret);
+    const token = jwt.sign({payload}, secret);
 
     return token;
   } catch (error) {
