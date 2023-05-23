@@ -32,7 +32,7 @@ const userRegisterValidationRules = () => {
       .optional()
       .isMobilePhone()
       .withMessage("Invalid phone number format"),
-      check("user_category").isInt().withMessage("invalid Role"),
+      /* check("user_category").isInt().withMessage("invalid Role"), */
     check("avatar").optional().isURL().withMessage("Invalid avatar URL")
   ];
 };

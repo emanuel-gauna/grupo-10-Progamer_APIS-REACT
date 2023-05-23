@@ -70,6 +70,8 @@ module.exports = {
     try {
       const result = await insertUser({ 
         ...req.body,
+        user_category: 0,
+        avatar: "default-image.png",
         pass: bcrypt.hashSync(req.body.pass, 10)//encriptar la contraseña
        });
   /* pasar en el postman metodo "post" la url http://localhost://3005/api/users/register      
