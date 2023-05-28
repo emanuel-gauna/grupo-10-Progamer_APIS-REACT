@@ -5,6 +5,7 @@ const process = require("process");
 const express = require("express");
 const methodOverride = require("method-override");
 require('dotenv').config();
+const cors = require('cors')
 
 // Rutas
 const [ 
@@ -24,6 +25,7 @@ app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(methodOverride("_method"));
+app.use(cors());
 
 // Rutas
 app.use(`/api/users`, userRouter);
