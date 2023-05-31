@@ -22,8 +22,8 @@ router
   .get("/", getUsers)// localhost://3005/api/users
   .get("/:id", getUserById)//localhost://3005/api/users/1
   .post("/register", userRegisterValidationRules(), validate, createUser)//http://localhost://3005/api/users/register
-  .post("/login", userLoginValidationRules(), validate, login)
-  .put("/:id", updateUser)
-  .delete("/:id", deleteUser);
+  .post("/login", userLoginValidationRules(), validate, login);
+  /* .put("/:id", updateUser)
+  .delete("/:id", deleteUser); */
 
 module.exports = router;
