@@ -108,6 +108,7 @@ module.exports = {
       return res.status(500).json({ Error: "Token error " + error });
     }
   },
-  updateUser: async (req, res) => {},
+  /* updateUser: async (req, res) => {},
   deleteUser: async (req, res) => {},
-};
+  */
+}; 
