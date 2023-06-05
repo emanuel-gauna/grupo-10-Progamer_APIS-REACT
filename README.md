@@ -43,7 +43,7 @@ Entre otras cosas a destacar de nuestra pagina, una de ellas el "Dejanos tus dud
 
 ***
  #### Agregar .env  los siguientes datos: 
- -  PORT=3000
+ -  PORT=3005
  -  DATABASE=pcgamer_db
  -  JWT_SECRET=pcgamer_
 ***
