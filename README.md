@@ -4,6 +4,14 @@
 
 - [Dashboard](https://github.com/TomasLopezTur/Dashboard_Pro-gamer_Grupo10)
 
+***
+ #### Agregar .env  los siguientes datos: 
+ -  PORT=3005
+ -  DATABASE=pcgamer_db
+ -  JWT_SECRET=pcgamer_
+
+***
+
 <img alt="pro-gamer-logo" src="./Info/Logo/proGamer_logo.png">
 
 ## ¿Quienes somos?
@@ -41,11 +49,6 @@ Entre otras cosas a destacar de nuestra pagina, una de ellas el "Dejanos tus dud
 - Estudiante de programación full stack. me gusta la parte de programación y diseño, de paginas web. Atento a seguir las nuevas tecnologías y empezar algún proyecto a gran escala.
 - Soy contratista en construcción, rama: yesería y seria para mi un gran logro crear un sitio que una mis dos pasiones; construcción y programación. ¡A seguir codeando!…
 
-***
- #### Agregar .env  los siguientes datos: 
- -  PORT=3005
- -  DATABASE=pcgamer_db
- -  JWT_SECRET=pcgamer_
 ***
 
 ## Link al documento o plataforma que utilicen para organizar el trabajo.
